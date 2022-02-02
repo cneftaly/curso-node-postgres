@@ -31,7 +31,7 @@ class User extends Model {
   }
 
   static config(sequelize) {
-    return{
+    return {
       sequelize,
       tableName: USER_TABLE,
       modelName: 'User',
