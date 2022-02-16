@@ -30,7 +30,7 @@ class CustomerService {
   }
 
   async update(id, changes) {
-    const Customer = await  this.findOne(id);
+    const Customer = await this.findOne(id);
     const response = Customer.update(changes);
     return response;
   }
