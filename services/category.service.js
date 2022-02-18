@@ -32,7 +32,6 @@ class CategoryService {
   async delete(id) {
     return { id };
   }
-
 }
 
 module.exports = CategoryService;
