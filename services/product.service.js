@@ -1,6 +1,4 @@
-const faker = require('faker');
 const boom = require('@hapi/boom');
-
 const { models } = require('../libs/sequelize');
 class ProductsService {
   async create(data) {
@@ -9,12 +7,19 @@ class ProductsService {
   }
 
   async find() {
-    const products = await models.Product.findAll();
+    const products = await models.Product.findAll({
+      include: ['category']
+    });
     return products;
   }
 
   async findOne(id) {
     const product = await models.Product.findByPk(id);
+
+    if(!product) {
+      throw boom.notFound("El producto no existe");
+    }
+
     return product;
   }
 
@@ -25,14 +30,11 @@ class ProductsService {
   }
 
   async delete(id) {
-    const index = this.products.findIndex(item => item.id === id);
-    if (index === -1) {
-      throw boom.notFound('product not found');
-    }
-    this.products.splice(index, 1);
+    const product = await this.findOne(id);
+    await product.destroy();
+
     return { id };
   }
-
 }
 
 module.exports = ProductsService;

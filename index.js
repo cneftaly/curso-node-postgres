@@ -36,7 +36,6 @@ app.use(ormErrorHandler);
 app.use(boomErrorHandler);
 app.use(errorHandler);
 
-
 app.listen(port, () => {
   console.log('Mi puerto: ' +  port);
 });
