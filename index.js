@@ -37,5 +37,5 @@ app.use(boomErrorHandler);
 app.use(errorHandler);
 
 app.listen(port, () => {
-  console.log('Mi puerto: ' +  port);
+  console.log('Escuchando en el puerto: ' +  port);
 });
